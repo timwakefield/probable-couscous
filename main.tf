@@ -27,13 +27,3 @@ resource "azurerm_resource_group" "rg" {
   name     = "myTFResourceGroup"
   location = "westus2"
 }
-
-cloud { # The name of your Terraform Cloud organization.
-    organization = "zonedigital"
-
-   # The name of the Terraform Cloud workspace to store Terraform state files in.
-    workspaces {
-      name = "probable-couscous"
-    }
-    
-}
