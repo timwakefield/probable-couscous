@@ -25,6 +25,23 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "myTFResourceGroup"
-  location = "westus2"
+  name     = "${var.system_name}-network"
+  location = var.location
+}
+#
+# Create networking
+#
+module "network" {
+  source              = "../../modules/network"
+  resource_group_name = "${var.system_name}-network"
+  location            = var.location
+  address_space       = var.address_space     # IP address space used for the network, subnets will be created in this space
+  #address_prefixes      = "${lookup(var.subnets)}"
+  system_name         = var.system_name
+
+  tags = {
+    project = var.project
+    env     = var.env
+    role    = "Vnet"
+  }
 }
