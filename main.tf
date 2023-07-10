@@ -32,7 +32,7 @@ resource "azurerm_resource_group" "rg" {
 # Create networking
 #
 module "network" {
-  source              = "./modules/network"
+  source              = "./network"
   resource_group_name = "${var.system_name}-network"
   location            = var.location
   address_space       = var.address_space     # IP address space used for the network, subnets will be created in this space
